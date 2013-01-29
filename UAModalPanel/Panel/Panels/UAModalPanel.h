@@ -60,6 +60,7 @@ typedef void (^UAModalDisplayPanelAnimationComplete)(BOOL finished);
 @property (nonatomic, retain) UIButton		*closeButton;
 @property (nonatomic, retain) UIButton		*actionButton;
 @property (nonatomic, retain) UIView		*contentView;
+@property (nonatomic, retain) UIView		*backgroundView;
 
 // Margin between edge of container frame and panel. Default = {20.0, 20.0, 20.0, 20.0}
 @property (nonatomic, assign) UIEdgeInsets	margin;
