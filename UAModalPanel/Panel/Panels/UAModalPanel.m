@@ -279,43 +279,34 @@
 	self.contentContainer.transform = CGAffineTransformMakeScale(0.00001, 0.00001);
 	
 	
-	void (^animationBlock)(BOOL) = ^(BOOL finished) {
-		[self showAnimationPart1Finished];
-		// Wait one second and then fade in the view
-		[UIView animateWithDuration:0.1 delay:0.00 options:UIViewAnimationCurveEaseOut
-										 animations:^{
-											 self.contentContainer.center = self.center;
-										 }
-										 completion:^(BOOL finished){
-											 [self showAnimationFinished];
-											 if ([delegate respondsToSelector:@selector(didShowModalPanel:)])
-												 [delegate didShowModalPanel:self];
-										 }];
-	};
-	
 	// Show the view right away
 	CGFloat direction = 1.0;
 	if (startEndPoint.y < self.center.y) {
 		direction = -1.0;
 	}
+	CGPoint center = self.center;
 	
-	[UIView animateWithDuration:0.4
+	[UIView animateWithDuration:0.3
 												delay:0.0
-											options:UIViewAnimationCurveEaseOut
+											options:UIViewAnimationCurveEaseInOut
 									 animations:^{
 										 self.alpha = 1.0;
-										 if (shouldBounce) {
-											 self.contentContainer.center = CGPointMake(self.center.x, self.center.y - 10.f * direction);
-										 } else {
-											 self.contentContainer.center = self.center;
-										 }
-										 self.contentContainer.transform = CGAffineTransformIdentity;
+										 self.contentContainer.center = CGPointMake(center.x, center.y - (center.y * 0.05));
+										 self.contentContainer.transform = CGAffineTransformMakeScale(1.05, 1.05);
 									 }
-									 completion:(shouldBounce ? animationBlock : ^(BOOL finished) {
-											[self showAnimationFinished];
-											if ([delegate respondsToSelector:@selector(didShowModalPanel:)])
-												[delegate didShowModalPanel:self];
-										})];
+									 completion:(^(BOOL finished) {
+											[UIView animateWithDuration:0.08f
+																						delay:0.f
+																					options:UIViewAnimationOptionCurveEaseInOut
+																			 animations:^{
+																				 self.contentContainer.center = center;
+																				 self.contentContainer.transform = CGAffineTransformIdentity;
+											} completion:^(BOOL finished) {
+												[self showAnimationFinished];
+												if ([delegate respondsToSelector:@selector(didShowModalPanel:)])
+													[delegate didShowModalPanel:self];
+											}];
+									})];
 
 }
 - (void)showFromPoint:(CGPoint)point {
