@@ -52,7 +52,7 @@
 		self.contentContainer.autoresizesSubviews = YES;
 		[self addSubview:self.contentContainer];
 		
-		self.backgroundView = [[[UIView alloc] initWithFrame:frame] autorelease];
+		self.backgroundView = [[UIView alloc] initWithFrame:frame];
 		[self.contentContainer addSubview:self.backgroundView];
 				
 		[self.contentView setBackgroundColor:[UIColor clearColor]];
@@ -75,7 +75,6 @@
 	self.onActionPressed = nil;
 	self.onClosePressed = nil;
 	self.delegate = nil;
-	[super dealloc];
 }
 
 #pragma mark - Description
