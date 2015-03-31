@@ -9,19 +9,20 @@
 #import "UATitledModalPanel.h"
 #import <QuartzCore/QuartzCore.h>
 
+#ifdef __IPHONE_6_0
+# define ALIGN_CENTER NSTextAlignmentCenter
+#else
+# define ALIGN_CENTER UITextAlignmentCenter
+#endif
+
 #define DEFAULT_TITLE_BAR_HEIGHT	40.0f
 
 @implementation UATitledModalPanel
 
 @synthesize titleBarHeight, titleBar, headerLabel;
 
-- (void)dealloc {
-    self.titleBar = nil;
-	self.headerLabel = nil;
-    [super dealloc];
-}
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         
@@ -37,13 +38,13 @@
 		
 		[self.roundedRect addSubview:self.titleBar];
 		
-		self.headerLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+		self.headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 		self.headerLabel.font = [UIFont systemFontOfSize:24];
 		self.headerLabel.backgroundColor = [UIColor clearColor];
 		self.headerLabel.textColor = [UIColor whiteColor];
 		self.headerLabel.shadowColor = [UIColor blackColor];
 		self.headerLabel.shadowOffset = CGSizeMake(0, -1);
-		self.headerLabel.textAlignment = UITextAlignmentCenter;
+		self.headerLabel.textAlignment = ALIGN_CENTER;
 		[self.titleBar addSubview:self.headerLabel];
 
 		
@@ -94,7 +95,7 @@
 	UADebugLog(@"Fading in content for modalPanel: %@", self);
 	[UIView animateWithDuration:0.2
 						  delay:0.0
-						options:UIViewAnimationCurveEaseIn
+						options:UIViewAnimationOptionCurveEaseIn
 					 animations:^{
 						 self.contentView.alpha = 1.0;
 						 self.titleBar.alpha = 1.0;

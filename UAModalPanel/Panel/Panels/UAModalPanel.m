@@ -26,7 +26,7 @@
 @synthesize onClosePressed, onActionPressed;
 
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
 	if (self != nil) {
 		delegate = nil;
@@ -40,14 +40,14 @@
 		padding = UIEdgeInsetsMake(DEFAULT_MARGIN, DEFAULT_MARGIN, DEFAULT_MARGIN, DEFAULT_MARGIN);
 		cornerRadius = DEFAULT_CORNER_RADIUS;
 		borderWidth = DEFAULT_BORDER_WIDTH;
-		borderColor = [DEFAULT_BORDER_COLOR retain];
-		contentColor = [DEFAULT_BACKGROUND_COLOR retain];
+		borderColor = DEFAULT_BORDER_COLOR;
+		contentColor = DEFAULT_BACKGROUND_COLOR;
 		shouldBounce = DEFAULT_BOUNCE;
 		
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
 		self.autoresizesSubviews = YES;
 		
-		self.contentContainer = [[[UIView alloc] initWithFrame:self.bounds] autorelease];
+		self.contentContainer = [[UIView alloc] initWithFrame:self.bounds];
 		self.contentContainer.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
 		self.contentContainer.autoresizesSubviews = YES;
 		[self addSubview:self.contentContainer];
@@ -81,7 +81,7 @@
 #pragma mark - Description
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"<%@ %d>", [[self class] description], self.tag];
+	return [NSString stringWithFormat:@"<%@ %ld>", [[self class] description], (long)self.tag];
 }
 
 #pragma mark - Accessors
@@ -95,15 +95,11 @@
 	self.roundedRect.layer.borderWidth = borderWidth;
 }
 - (void)setBorderColor:(UIColor *)newColor {
-	[newColor retain];
-	[borderColor release];
 	borderColor = newColor;
 	
 	self.roundedRect.layer.borderColor = [borderColor CGColor];
 }
 - (void)setContentColor:(UIColor *)newColor {
-	[newColor retain];
-	[contentColor release];
 	contentColor = newColor;
 	
 	self.roundedRect.backgroundColor = contentColor;
@@ -111,7 +107,7 @@
 
 - (UIView *)roundedRect {
 	if (!roundedRect) {
-		self.roundedRect = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+		self.roundedRect = [[UIView alloc] initWithFrame:CGRectZero];
 		self.roundedRect.layer.masksToBounds = YES;
 		self.roundedRect.backgroundColor = self.contentColor;
 		self.roundedRect.layer.borderColor = [self.borderColor CGColor];
@@ -166,7 +162,7 @@
 
 - (UIView *)contentView {
 	if (!contentView) {
-		self.contentView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+		self.contentView = [[UIView alloc] initWithFrame:CGRectZero];
 		self.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
 		self.contentView.autoresizesSubviews = YES;
 		[self.contentContainer insertSubview:contentView aboveSubview:self.roundedRect];
@@ -286,14 +282,14 @@
 	}
 	CGPoint center = self.center;
 	
-	[UIView animateWithDuration:0.3
-												delay:0.0
-											options:UIViewAnimationCurveEaseInOut
-									 animations:^{
-										 self.alpha = 1.0;
-										 self.contentContainer.center = CGPointMake(center.x, center.y - (center.y * 0.05));
-										 self.contentContainer.transform = CGAffineTransformMakeScale(1.05, 1.05);
-									 }
+    [UIView animateWithDuration:0.3
+						  delay:0.0
+						options:UIViewAnimationOptionCurveEaseOut
+					 animations:^{
+						 self.alpha = 1.0;
+						 self.contentContainer.center = self.center;
+						 self.contentContainer.transform = CGAffineTransformMakeScale((shouldBounce ? 1.05 : 1.0), (shouldBounce ? 1.05 : 1.0));
+					 }
 									 completion:(^(BOOL finished) {
 											[UIView animateWithDuration:0.08f
 																						delay:0.f

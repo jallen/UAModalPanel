@@ -1,7 +1,7 @@
 What is UAModalPanel?
 ---------------------
 
-![UAModalPanel Example Pic](https://github.com/coneybeare/UAModalPanel/raw/master/_README_ASSETS/UAModalPanel.jpg)![UAModalPanel Example Pic 2](https://github.com/coneybeare/UAModalPanel/raw/master/_README_ASSETS/UAModalPanel2.jpg)![UAModalPanel Example Pic 3](https://github.com/coneybeare/UAModalPanel/raw/master/_README_ASSETS/UAModalPanel3.jpg)![UAModalPanel Example Pic 4](https://github.com/coneybeare/UAModalPanel/raw/master/_README_ASSETS/UAModalPanel4.jpg)
+![UAModalPanel Example Pic](https://github.com/coneybeare/UAModalPanel/raw/master/_README_ASSETS/UAModalPanel.jpg)![UAModalPanel Example Pic 2](https://github.com/coneybeare/UAModalPanel/raw/master/_README_ASSETS/UAModalPanel2.jpg)![UAModalPanel Example Pic 3](https://github.com/coneybeare/UAModalPanel/raw/master/_README_ASSETS/UAModalPanel3.jpg)
 
 UAModalPanel is a highly customizable, alternative modal panel that you can popup in your view controllers to show content that might not need an entire new screen to show. It has a bounce animation, content fade-in, and a fancy noisy-gradient title bar. It works on the iPhone and iPad, with or without rotation.
 
@@ -10,11 +10,17 @@ Example Video
 http://www.youtube.com/watch?v=AJDR0GAsV9E
 
 
-
 Step 0: Prerequisites
 ---------------------
 You'll need at least Xcode 3.2 and an iOS 4.0+ project
 
+Step 0.5: CocoaPods way
+----------------
+[CocoaPods](http://cocoapods.org/) is the recommended way to use UAModalPanel in your project.
+
+* Simply add this line to your `Podfile`: `pod 'UAModalPanel', '~> 1.2'`
+* Run `pod install`
+* Go directly to [Step 3](#step-3-implement-uamodalpanel)
 
 Step 1: Get UAModalPanel files (add as Git submodule)
 ----------------
@@ -213,9 +219,14 @@ UAModalPanel is not using ARC, but you can use it in your ARC project by adding 
 ![ARC Settings](https://github.com/coneybeare/UAModalPanel/raw/master/_README_ASSETS/UAModalPanelARC.png)
 
 
-Cocoapods
+Contributing to UAModalPanel
 ------------------------
-UAModalPanel can be added to a project using [Cocoapods](https://github.com/CocoaPods/CocoaPods)
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Added some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Test it by adding it to the sample app and ensuring everything works as intended with both your change, and the existing code.
+6. Create new Pull Request
 
 
 App that are using UAModalPanel:
@@ -223,8 +234,10 @@ App that are using UAModalPanel:
 If you are using UAModalPanel, please contact me to get added to this list!
 
 * [Ambiance](http://ambianceapp.com/iphone), [Ambiance Lite](http://ambianceapp.com/iphone)
-* [Hourly News](http://itunes.apple.com/us/app/hourly-news/id493859859?mt=8)
+* [Hourly News](http://hourlynewsapp.com)
+* [The Last Shot](http://thelastshot.com)
 * [FlippedText](http://flippedtext.com)
+* [All Budget](http://www.geckobit.com/allbudget.html)
 
  
 Get in touch:
@@ -235,9 +248,28 @@ Get in touch:
 * [Contact me](http://coneybeare.net)
 
 
+What Does UA stand for?
+------------------------
+[Urban Apps](http://urbanapps.com). We make neat stuff. Check us out.
+
+
+Open-Source Urban Apps Projects
+------------------------
+
+* [Armchair](https://github.com/UrbanApps/Armchair) - A simple yet powerful App Review Manager for iOS and OSX (Swift)
+* [UAAppReviewManager](https://github.com/UrbanApps/UAAppReviewManager) - An app review prompting tool for iOS and Mac App Store apps.
+* [UALogger](https://github.com/UrbanApps/UALogger) - A logging utility for Mac/iOS apps
+* [UAObfuscatedString](https://github.com/UrbanApps/UAObfuscatedString) - A simple NSString category to hide sensitive strings
+* [UAProgressView](https://github.com/UrbanApps/UAProgressView) A simple and lightweight, yet powerful animated circular progress view
+* [Urban](https://github.com/UrbanApps/Urban) - An Xcode color scheme that uses a soft dark background, with subtle blue, orange and yellow colors
+
 Donate:
 ------------------------
 Please support us so that we can continue to make UAModalPanel even more awesome! If you are feeling particularly generous, please buy me a beer! 
 
 
 [![Paypal Button](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif "Paypal Button")](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LGPE58JWZKBG2)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/coneybeare/uamodalpanel/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
